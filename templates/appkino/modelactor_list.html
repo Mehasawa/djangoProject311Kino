@@ -1,0 +1,35 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block head %}
+        <meta charset="UTF-8">
+        <title>Каталог</title>
+        <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'css/person.css' %}">
+{% endblock %}
+{% block content %}
+    <h2>Список актеров</h2>
+        <ul>
+        {% for one in modelactor_list %}
+            <li class="card">
+                <a href="{{ one.getUrl }}">{{ one.name }}</a>
+                <img src="{% static one.foto %}" alt="" width="250px">
+            </li>
+        {% endfor %}
+        </ul>
+    <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}"><<<</a>
+        {% endif %}
+
+        <span class="current">
+            Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">>>></a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}

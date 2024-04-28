@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block head %}
+        <meta charset="UTF-8">
+        <title>Каталог</title>
+        <link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+{% block content %}
+    <h2>Актер</h2>
+    <h3>{{ modelactor.name }}</h3>
+     <img src="{% static modelactor.foto %}" alt="" width="250px">
+    <p>{{ modelactor.info }}</p>
+{% endblock %}

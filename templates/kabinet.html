@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block head %}
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+
+{% endblock %}
+{% block content %}
+    <h2>Это ваш кабинет {{ user.username }}</h2>
+    <h2>Дата регистрации {{ user.date_joined }}</h2>
+    <h3>Ваша почта {{ user.email }}</h3>
+    <h3>Ваш баланс {{ user.modelprofile.balance }}</h3>
+    <h3>Ваш уровень подписки {{ user.modelprofile.podpiska }}</h3>
+    <a href="{% url 'kabinetChange' %}">
+        <button>Сменить подписку</button></a>
+    {% if form %}
+        <form action="" method="post">
+        {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Сменить">
+        </form>
+    {% endif %}
+{% endblock %}
